@@ -24,18 +24,28 @@ for fac in range(0, len(facility)-1):
 		row = upgrade.find_all('tr')
 		itemList = []
 		for item in row:
-			itemText = item.text.strip().rstrip("\n")
+			if item == '\n' or '\t' in item:
+				continue
+			itemText = item.text.strip()
 
 			for br in item.find_all('br'):
 				br.extract()
 
 			for p in item.find_all('p'):
-				pItem = p.extract().text.strip().rstrip('\n')
+				pItem = p.extract().text.strip()
 				#itemText = itemText + pItem
 
+			itemList.append(itemText)
 			#print(item)
 			#print(item.text.strip(), end='')
-			print("{:<30}".format(itemText, end=''))
+			#print("{:<30}".format(itemText, end=''))
+			print("{:<30}".format(itemText.rstrip("\n"), end=''))
 
+		#for i in itemList:
+		#	i = i.strip()
+		#	print(i)
+		#print(itemList)
 		print("\n\n\n")
-		
+	
+
+
