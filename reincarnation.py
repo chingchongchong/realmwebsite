@@ -24,7 +24,7 @@ def reincarnationLvl(level):
     bldingPdn = 1
     mana = 0
     buildingProd = 0
-    royalExBonus = 0
+    royalExBonus = 0    
     unqBuilding = 0
     mana2 = 0
     facFactionCoin = 0
@@ -123,6 +123,8 @@ def reincarnationLvl(level):
 
     for i in range(0, len(rList)-1):
         print("{:50}{:.2f}".format(rNameList[i], rList[i]))
+
+    return rList
 
 
 playing = True
