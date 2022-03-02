@@ -6,13 +6,23 @@ import math
 class Faction:
 
     # bldList states the amount of buildings there is for each building type
-    def __init__(self, reincarnation, bldList, trophy):
+    def __init__(self, reincarnation, bldList, mana, manaRegen, trophy):
         self.reincarnation = reincarnation
         self.bldList = bldList
+        self.mana = mana
+        self.manaRegen = manaRegen
         self.trophy = trophy
 
+
+        self.clickReward = 1
         self.buildCostList = [10, 125, 600, 1800, 5600, 38000, 442000, 7300000, 145*math.pow(10, 6), 3.2*math.pow(10, 9), 200*pow(10, 9)]
         self.buildBasePdn = [2, 6, 20, 65, 200, 650, 2000, 8500, 100000, 1200000, 250000 * self.trophy]
+
+        # this is the multiplying production, which is separate from the base production
+        # there are upgrades that increase building base production
+        self.buildAddPdn = []
+        for i in range(0, len(self.buildCostList)):
+            self.buildAddPdn.append(1)
 
     def call_of_arms(self):
         call = 0.3 * math.pow(self.bldAmt, 0.975) * 0.01
@@ -44,8 +54,8 @@ class Faction:
 
         
 class Good(Faction):
-    def __init__(self, reincarnation, bldList, trophy):
-        super().__init__(reincarnation, bldList, trophy)
+    def __init__(self, reincarnation, bldList, mana, manaRegen, trophy):
+        super().__init__(reincarnation, bldList, mana, manaRegen, trophy)
         self.nameList = ["Farm", "Inn", "Blacksmith", "Warrior Barracks", "Knight Jousts", "Wizard Tower", "Cathedral", "Citadel", "Royal Castle", "Heaven's Gate", "Hall of Legends"]
 
     # clicking reward
@@ -62,8 +72,8 @@ class Good(Faction):
         return bldingList
 
 class Evil(Faction):
-    def __init__(self, reincarnation, bldList, trophy):
-        super().__init__(reincarnation, bldList, trophy)
+    def __init__(self, reincarnation, bldList, mana, manaRegen, trophy):
+        super().__init__(reincarnation, bldList, mana, manaRegen, trophy)
         self.nameList = ["Farm", "Inn", "Blacksmith", "Slave Pen", "Orcish Arena", "Witch Conclave", "Dark Temple", "Necropolis", "Evil Fortress", "Hell Portal", "Hall of Legends"]
 
     # production reward
@@ -73,15 +83,15 @@ class Evil(Faction):
     def get_blding_list(self):
         bldingList = []
         
-        for i in range(0, len(nameList)):
+        for i in range(0, len(self.nameList)):
             bldingList.append([self.nameList[i], self.buildCostList[i], self.buildBasePdn[i]])
             print(bldingList[i])
         
         return bldingList
 
 class Neutral(Faction):
-    def __init__(self, reincarnation, bldList, trophy):
-        super().__init__(reincarnation, bldList, trophy)
+    def __init__(self, reincarnation, bldList, mana, manaRegen, trophy):
+        super().__init__(reincarnation, bldList, mana, manaRegen, trophy)
         self.nameList = ["Farm", "Inn", "Blacksmith", "Deep Mine", "Stone Pillars", "Alchemist Lab", "Monastery", "Labyrinth", "Iron Stronghold", "Ancient Pyramid", "Hall of Legends"]
 
     # increase production bonus from gems
@@ -90,25 +100,12 @@ class Neutral(Faction):
 
     def get_blding_list(self):
         bldingList = []
-        for i in range(0, len(nameList)):
+        for i in range(0, len(self.nameList)):
             bldingList.append([self.nameList[i], self.buildCostList[i], self.buildBasePdn[i]])
             print(bldingList[i])
 
 
 
-class Fairy(Good):
-    def __init__(self, reincarnation, bldList, trophy):
-        super().__init__(reincarnation, bldList, trophy)
-
-    # increase production of Farms, Inns and Blacksmiths only
-    def fairy_chanting(self):
-        return 50000 * 1/100
-
-
-
-#fac1 = Faction(50, "black", "fairy", 1000)
-fac2 = Good(20, 2000, 500)
-fac2.get_blding_list()
 
 
 

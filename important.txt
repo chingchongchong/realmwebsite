@@ -1,0 +1,32 @@
+There are multiple factors to the math of Realm Grinder
+Upgrades affect a great degree of things.
+
+- Mana
+- Mana Regeneration
+- Building Production
+- Specific Building Production
+- Spell Boost
+- Click Rewards
+- Assistant Production
+- Assistant Amount
+- Reincarnation
+- Faction Coin Find Chance (Additive and Multiplicative)
+- Offline Production
+- Royal Exchange Bonus
+- Gem Production Bonus
+
+- Bloodline
+- Lineage
+- Challenges
+- Excavations
+- Production based on time spent on the game
+- Production based on time difference between each factions
+- Faction coin Find chance based on amount of research made
+- Production Bonus based on Royal Exchange Bonus
+- Overall Production based on duration of spells
+- Production of specific spell based on amount of spell casts
+
+Building Production
+-------------------
+Certain upgrades will upgrade a specific building's performance, not just the overall building production
+Therefore it is important to multiply the building production value specific to that building.
